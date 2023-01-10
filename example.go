@@ -31,7 +31,7 @@ func main() {
 	fmt.Println(withdrawResult)
 
 	// Here is an example of a detail
-	detailResult := gggpay.Detail("10854", 1)
+	detailResult := gggpay.Detail("10921", 1)
 	fmt.Println(detailResult)
 
 	// Decrypt the encrypted information in the callback

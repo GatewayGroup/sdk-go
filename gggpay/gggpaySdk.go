@@ -311,6 +311,11 @@ func SymDecrypt(encryptedMessage string) string {
 	mode := cipher.NewCBCDecrypter(block, iv)
 	mode.CryptBlocks([]byte(cipherTextDecoded), []byte(cipherTextDecoded))
 	decryptedText := bytesToString(cipherTextDecoded)
+	// Encryption function, if the text is less than 16 digits, fill it with spaces to 16 digits,
+	// If it is greater than 16 but not a multiple of 16, it will be a multiple of 16.
+	// After decryption, remove the supplementary spaces and use strip() to remove them
+	decryptedText = strings.TrimSpace(decryptedText)
+	decryptedText = strings.TrimRight(decryptedText, "\x01\x02\x03\x04\x05\x06\x07\x08\x09\x0a\x0b\x0c\x0d\x0e\x0f\x10\n\t\r\v")
 	return decryptedText
 }
 
