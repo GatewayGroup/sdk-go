@@ -104,7 +104,7 @@ func Withdraw(orderId string, amount float64, currency, bankCode, cardholder, ac
 	// Remember, the format of json and the order of json attributes must be the same as the SDK specifications.
 	// The sorting rules of Json attribute data are arranged from [a-z]
 	bodyJson := "{\"order\":{\"amount\":\"" + strconv.FormatFloat(amount, 'E', -1, 32) + "\",\"currencyType\":\"" + currency + "\",\"id\":\"" + orderId + "\"},\"recipient\":{\"email\":\"" + recipientEmail + "\",\"methodRef\":\"" + refName + "\",\"methodType\":\"" + bankCode + "\",\"methodValue\":\"" + accountNumber + "\",\"name\":\"" + cardholder + "\",\"phone\":\"" + recipientPhone + "\"}}"
-	//bodyJson := "{\"order\":{\"amount\":\"" + strconv.FormatFloat(amount, 'E', -1, 32) + "\",\"currencyType\":\"" + currency + "\",\"id\":\"" + orderId + "\"},\"payoutspeed\":\"normal\",\"recipient\":{\"email\":\"" + recipientEmail + "\",\"methodRef\":\"" + refName + "\",\"methodType\":\"" + bankCode + "\",\"methodValue\":\"" + accountNumber + "\",\"name\":\"" + cardholder + "\",\"phone\":\"" + recipientPhone + "\"}}"
+	//bodyJson := "{\"callbackUrl\":\"https://www.google.com\",\"order\":{\"amount\":\"" + strconv.FormatFloat(amount, 'E', -1, 32) + "\",\"currencyType\":\"" + currency + "\",\"id\":\"" + orderId + "\"},\"payoutspeed\":\"normal\",\"recipient\":{\"email\":\"" + recipientEmail + "\",\"methodRef\":\"" + refName + "\",\"methodType\":\"" + bankCode + "\",\"methodValue\":\"" + accountNumber + "\",\"name\":\"" + cardholder + "\",\"phone\":\"" + recipientPhone + "\"}}"
 	base64ReqBody := sortedAfterToBased64(bodyJson)
 	signature := createSignature(cnst, base64ReqBody)
 	encryptData := symEncrypt(base64ReqBody)
