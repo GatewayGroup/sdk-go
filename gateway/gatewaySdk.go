@@ -1,4 +1,4 @@
-package gggpay
+package gateway
 
 import (
 	"bytes"
@@ -53,7 +53,7 @@ func Deposit(orderId string, amount float64, currency, payMethod, customerName, 
 	if isnull(currency) {
 		currency = "MYR"
 	}
-	requestUrl := "gggpay/" + VERSION_NO + "/createPayment"
+	requestUrl := "gateway/" + VERSION_NO + "/createPayment"
 	cnst := generateConstant(requestUrl)
 	// If callbackUrl and redirectUrl are empty, take the values ​​of [curl] and [rurl] in the developer center.
 	// Remember, the format of json and the order of json attributes must be the same as the SDK specifications.
@@ -98,7 +98,7 @@ func Withdraw(orderId string, amount float64, currency, bankCode, cardholder, ac
 	if isnull(currency) {
 		currency = "MYR"
 	}
-	requestUrl := "gggpay/" + VERSION_NO + "/withdrawRequest"
+	requestUrl := "gateway/" + VERSION_NO + "/withdrawRequest"
 	cnst := generateConstant(requestUrl)
 	// payoutspeed contain "fast", "normal", "slow" ,default is : "fast"
 	// Remember, the format of json and the order of json attributes must be the same as the SDK specifications.
@@ -133,7 +133,7 @@ func Detail(orderId string, types int) map[string]any {
 	if isnull(token) {
 		return result
 	}
-	requestUrl := "gggpay/" + VERSION_NO + "/getTransactionStatusById"
+	requestUrl := "gateway/" + VERSION_NO + "/getTransactionStatusById"
 	cnst := generateConstant(requestUrl)
 	// Remember, the format of json and the order of json attributes must be the same as the SDK specifications.
 	// The sorting rules of Json attribute data are arranged from [a-z]
@@ -165,7 +165,7 @@ func getToken() string {
 		EncryptAuthInfo = publicEncrypt(authString)
 	}
 	json := "{\"data\":\"" + EncryptAuthInfo + "\"}"
-	dict := post("gggpay/"+VERSION_NO+"/createToken", "", "", json, "", "")
+	dict := post("gateway/"+VERSION_NO+"/createToken", "", "", json, "", "")
 	var token string = ""
 	if !isnull(dict["code"]) && dict["type"].(string) == "success" && !isnull(dict["encryptedToken"]) {
 		token = SymDecrypt(dict["encryptedToken"].(string))

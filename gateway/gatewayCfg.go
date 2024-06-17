@@ -1,4 +1,4 @@
-package gggpay
+package gateway
 
 import (
 	"crypto/rsa"
@@ -14,7 +14,7 @@ import (
 var VERSION_NO string = "v1"
 
 /**
-* GGGPay Api Url
+* gateway Api Url
  */
 var BASE_URL string = "http://localhost:3000/"
 
@@ -81,8 +81,8 @@ var PRIVATE_KEY string = "-----BEGIN RSA PRIVATE KEY-----\n" +
 
 /**
 * initialize this configuration
-* @param {*} verNo GGGPay Api Version Number
-* @param {*} apiUrl apiUrl GGGPay Api Url
+* @param {*} verNo gateway Api Version Number
+* @param {*} apiUrl apiUrl gateway Api Url
 * @param {*} appId appId in developer settings : App Id
 * @param {*} key key in developer settings : Key
 * @param {*} secret secret in developer settings : secret
